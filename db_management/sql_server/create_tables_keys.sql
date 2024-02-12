@@ -1,4 +1,3 @@
-
 USE rdsadmin;
 
 drop database VendingMachineRentalDB;
@@ -9,4 +8,5 @@ GO
 
 
 USE VendingMachineRentalDB;
+
 GO

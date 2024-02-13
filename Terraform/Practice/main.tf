@@ -19,6 +19,7 @@ module "vpc" {
   name                 = "education"
   cidr                 = "10.0.0.0/16"
   azs                  = data.aws_availability_zones.available.names
+  # azs                  = ["eu-west-1"]
   public_subnets       = ["10.0.4.0/24", "10.0.5.0/24", "10.0.6.0/24"]
   enable_dns_hostnames = true
   enable_dns_support   = true
@@ -58,20 +59,15 @@ resource "aws_security_group" "rds" {
 
 resource "aws_db_parameter_group" "education" {
   name   = "education"
-  family = "postgres14"
-
-  parameter {
-    name  = "log_connections"
-    value = "1"
-  }
+  family = "sqlserver-ex-15.0"
 }
 
 resource "aws_db_instance" "education" {
   identifier             = "education"
   instance_class         = "db.t3.micro"
-  allocated_storage      = 5
-  engine                 = "postgres"
-  engine_version         = "14.1"
+  allocated_storage      = 20
+  engine                 = "sqlserver-ex"
+  engine_version         = "15.00.4345.5.v1"
   username               = "edu"
   password               = var.db_password
   db_subnet_group_name   = aws_db_subnet_group.education.name

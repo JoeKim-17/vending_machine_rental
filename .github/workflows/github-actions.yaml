@@ -1,0 +1,18 @@
+name: Main
+on:
+  - push
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      sqlserver:
+        image: sqlserver
+    steps:
+      - uses: actions/checkout@v2
+      - uses: joshuaavalon/flyway-action@v3.0.0
+        env: 
+          FLYWAY_URL: ${{ secrets.DB_BUILD_URL }}
+          FLYWAY_USER: ${{ secrets.DB_BUILD_USERNAME }}
+          FLYWAY_PASSWORD: ${{ secrets.DB_BUILD_PASSWORD }}
+          FLYWAY_VALIDATE_MIGRATION_NAMING: true  
+      - run: echo 'testing'

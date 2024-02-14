@@ -42,7 +42,7 @@ jobs:
           FLYWAY_PASSWORD: ${{ secrets.DB_BUILD_PASSWORD }}
           FLYWAY_VALIDATE_MIGRATION_NAMING: true  
         run: touch flyway.conf ;
-          echo "${{ env.FLYWAY_URL }}" ;
+          echo "${{ secrets.DB_BUILD_URL }}" ;
           echo "flyway.url=jdbc:sqlserver://${{ secrets.DB_BUILD_URL }}:1433;encrypt=true;trustServerCertificate=true;" >> flyway.conf ;
           echo "flyway.user=${{ secrets.DB_BUILD_USERNAME }}" >> flyway.conf ;
           echo "flyway.password=${{ secrets.DB_BUILD_PASSWORD }}" >> flyway.conf ;

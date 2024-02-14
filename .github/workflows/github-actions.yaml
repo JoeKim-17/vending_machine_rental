@@ -16,7 +16,6 @@ jobs:
           MSSQL_COLLATION: "SQL_Latin1_General_CP1_CI_AS"
     steps:
       - uses: actions/checkout@v2
-      - uses: joshuaavalon/flyway-action@v3.0.0
         env: 
           FLYWAY_URL: ${{ secrets.DB_BUILD_URL }}
           FLYWAY_USER: ${{ secrets.DB_BUILD_USERNAME }}

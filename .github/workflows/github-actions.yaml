@@ -6,8 +6,16 @@ jobs:
     runs-on: ubuntu-latest
     services:
       sqlserver:
-        image: sqlserver
+        image: mcr.microsoft.com/mssql/server:2022-latest
+        ports: 
+          - 1433:1433
+        env:
+          ACCEPT_EULA: "Y"
+          MSSQL_SA_PASSWORD: ${{ secrets.DB_BUILD_PASSWORD }}
+          MSSQL_PID: "Express"
+          MSSQL_COLLATION: "SQL_Latin1_General_CP1_CI_AS"
     steps:
+      - run: docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=password123?" -p 1433:1433 -d mcr.microsoft.com/mssql/server:2022-latest    
       - uses: actions/checkout@v2
       - uses: joshuaavalon/flyway-action@v3.0.0
         env: 

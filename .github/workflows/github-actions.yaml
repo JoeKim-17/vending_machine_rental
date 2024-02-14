@@ -17,7 +17,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         env: 
-          FLYWAY_URL: ${{ secrets.DB_BUILD_URL }}
+          FLYWAY_URL: ${{ secrets.BUILD.DB_BUILD_URL }}
           FLYWAY_USER: ${{ secrets.DB_BUILD_USERNAME }}
           FLYWAY_PASSWORD: ${{ secrets.DB_BUILD_PASSWORD }}
           FLYWAY_VALIDATE_MIGRATION_NAMING: true  
@@ -37,7 +37,7 @@ jobs:
 
       - name: Configuring Flyway on aws EC2  
         env: 
-          FLYWAY_URL: ${{ secrets.DB_BUILD_URL }}
+          FLYWAY_URL: ${{ secrets.BUILD.DB_BUILD_URL }}
           FLYWAY_USER: ${{ secrets.DB_BUILD_USERNAME }}
           FLYWAY_PASSWORD: ${{ secrets.DB_BUILD_PASSWORD }}
           FLYWAY_VALIDATE_MIGRATION_NAMING: true  

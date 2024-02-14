@@ -35,15 +35,30 @@ jobs:
       - name: Set Flyway Path
         run: PATH=/flyway:$PATH
 
-      - name: Configuring Flyway on aws EC2
+      - name: Configuring Flyway on aws EC2  
+        env: 
+          FLYWAY_URL: ${{ secrets.DB_BUILD_URL }}
+          FLYWAY_USER: ${{ secrets.DB_BUILD_USERNAME }}
+          FLYWAY_PASSWORD: ${{ secrets.DB_BUILD_PASSWORD }}
+          FLYWAY_VALIDATE_MIGRATION_NAMING: true  
         run: touch flyway.conf ;
           echo "flyway.url=jdbc:sqlserver://${{ secrets.DB_BUILD_URL }}:1433;encrypt=true;trustServerCertificate=true;" >> flyway.conf ;
           echo "flyway.user=${{ secrets.DB_BUILD_USERNAME }}" >> flyway.conf ;
           echo "flyway.password=${{ secrets.DB_BUILD_PASSWORD }}" >> flyway.conf ;
 
-      - name: Run Flyway Info
+      - name: Run Flyway Info      
+        env: 
+          FLYWAY_URL: ${{ secrets.DB_BUILD_URL }}
+          FLYWAY_USER: ${{ secrets.DB_BUILD_USERNAME }}
+          FLYWAY_PASSWORD: ${{ secrets.DB_BUILD_PASSWORD }}
+          FLYWAY_VALIDATE_MIGRATION_NAMING: true  
         run: flyway info
         continue-on-error: true
 
       - name: Run Flyway Migrate
+        env: 
+          FLYWAY_URL: ${{ secrets.DB_BUILD_URL }}
+          FLYWAY_USER: ${{ secrets.DB_BUILD_USERNAME }}
+          FLYWAY_PASSWORD: ${{ secrets.DB_BUILD_PASSWORD }}
+          FLYWAY_VALIDATE_MIGRATION_NAMING: true  
         run: flyway migrate

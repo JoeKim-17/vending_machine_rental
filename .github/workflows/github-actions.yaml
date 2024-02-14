@@ -34,15 +34,13 @@ jobs:
       #     sudo mv flyway-8.5.6 /opt/flyway
 
       - name: Configuring Flyway on aws EC2
-        run: cd /opt/flyway/conf ;
-          touch flyway.conf ;
+        run: touch flyway.conf ;
           echo "flyway.url=jdbc:sqlserver://${{ secrets.DB_BUILD_URL }}:1433;encrypt=true;trustServerCertificate=true;" >> flyway.conf ;
           echo "flyway.user=${{ secrets.DB_BUILD_USERNAME }}" >> flyway.conf ;
           echo "flyway.password=${{ secrets.DB_BUILD_PASSWORD }}" >> flyway.conf ;
 
       - name: Run Flyway Info
-        run: cd /opt/flyway ;
-          ./flyway info
+        run: ./flyway info
         continue-on-error: true
 
       - name: Run Flyway Migrate

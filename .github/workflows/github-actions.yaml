@@ -41,7 +41,7 @@ jobs:
           echo "flyway.password=${{ secrets.DB_BUILD_PASSWORD }}" >> flyway.conf ;
 
       - name: Run Flyway Info
-        run: cd /opt/flyway
+        run: cd /opt/flyway ;
           ./flyway info
         continue-on-error: true
 

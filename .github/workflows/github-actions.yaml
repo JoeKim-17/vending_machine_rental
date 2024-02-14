@@ -44,5 +44,4 @@ jobs:
         continue-on-error: true
 
       - name: Run Flyway Migrate
-        run: cd /opt/flyway
-          ./flyway migrate
+        run: flyway migrate

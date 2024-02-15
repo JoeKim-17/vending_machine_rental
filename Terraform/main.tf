@@ -1,22 +1,14 @@
-# Copyright (c) HashiCorp, Inc.
-# SPDX-License-Identifier: MPL-2.0
-
 provider "aws" {
   region = var.region
 }
 
 data "aws_availability_zones" "available" {}
 
-# For simplicity, this RDS tutorial instance is publicly accessible. 
-# Avoid configuring database instances in public subnets in production, 
-# since it increases the risk of security attacks.
-
-
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "2.77.0"
 
-  name                 = "education"
+  name                 = "vendingMachineRental"
   cidr                 = "10.0.0.0/16"
   azs                  = data.aws_availability_zones.available.names
   # azs                  = ["eu-west-1"]
@@ -25,17 +17,17 @@ module "vpc" {
   enable_dns_support   = true
 }
 
-resource "aws_db_subnet_group" "education" {
-  name       = "education"
+resource "aws_db_subnet_group" "vendingMachineRental" {
+  name       = "vendingMachineRental"
   subnet_ids = module.vpc.public_subnets
 
   tags = {
-    Name = "Education"
+    Name = "vendingMachineRental"
   }
 }
 
 resource "aws_security_group" "rds" {
-  name   = "education_rds"
+  name   = "vendingMachineRental_rds"
   vpc_id = module.vpc.vpc_id
 
   ingress {
@@ -53,26 +45,26 @@ resource "aws_security_group" "rds" {
   }
 
   tags = {
-    Name = "education_rds"
+    Name = "vendingMachineRental_rds"
   }
 }
 
-resource "aws_db_parameter_group" "education" {
-  name   = "education"
+resource "aws_db_parameter_group" "vendingMachineRental" {
+  name   = "vendingMachineRental"
   family = "sqlserver-ex-15.0"
 }
 
-resource "aws_db_instance" "education" {
-  identifier             = "education"
+resource "aws_db_instance" "vendingMachineRental" {
+  identifier             = "vendingMachineRental"
   instance_class         = "db.t3.micro"
   allocated_storage      = 20
   engine                 = "sqlserver-ex"
   engine_version         = "15.00.4345.5.v1"
   username               = "edu"
   password               = var.db_password
-  db_subnet_group_name   = aws_db_subnet_group.education.name
+  db_subnet_group_name   = aws_db_subnet_group.vendingMachineRental.name
   vpc_security_group_ids = [aws_security_group.rds.id]
-  parameter_group_name   = aws_db_parameter_group.education.name
+  parameter_group_name   = aws_db_parameter_group.vendingMachineRental.name
   publicly_accessible    = true
   skip_final_snapshot    = true
 }

@@ -13,4 +13,4 @@ jobs:
           changeLogFile: 'samplechangelog.h2.sql'
           username: ${{ secrets.DB_BUILD_USERNAME }}
           password: ${{ secrets.DB_BUILD_PASSWORD }}
-          url: ${{ secrets.DB_BUILD_URL  }}
+          url: dblevelupinstance.csxil53pu1c8.eu-west-1.rds.amazonaws.com

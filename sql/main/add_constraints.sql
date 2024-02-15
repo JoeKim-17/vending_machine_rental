@@ -39,7 +39,7 @@ ALTER TABLE Manufacturers
 
 
 Alter table Inventory
-	add constraint inventory_check check(InventoryCount > 0),
+	add constraint inventory_check check(InventoryCount >= 0),
 	constraint machines_leasedPrice_check check(MonthlyLeasedPrice > 0)
 ;
 

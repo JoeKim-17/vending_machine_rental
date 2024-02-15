@@ -1,4 +1,6 @@
 db_management/flyway/
+github-actions.yaml
+flywayactions.yml
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

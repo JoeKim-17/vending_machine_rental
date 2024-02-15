@@ -4,9 +4,9 @@ A company renting out vending machines to different locations.
 ## Information of technologies and methods
 
 there are 3 scripts to set up the database located in ./sql/main/, and their purpose is as follows:
-    - create_db = create the database VendingMachineRentalDB and switch to it
-    - create_table_keys = create the relevant tables defined in the ERD along with their primary and foreign key.
-    - add_constraints = add the relevant constraints to the db.
+- create_db = create the database VendingMachineRentalDB and switch to it
+- create_table_keys = create the relevant tables defined in the ERD along with their primary and foreign key.
+- add_constraints = add the relevant constraints to the db.
 These scripts were run manually in SQL Server Management Studio to the database engine 
 other sql scripts were used to either fix the mistakes during development or test Liquibase migrations. 
 

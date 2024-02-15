@@ -5,15 +5,12 @@ jobs:
   flyway_job:
     runs-on: ubuntu-latest
     steps:
-      - name:  Liquibase
       - uses: actions/checkout@v2
-      
-      - name: new Liqui
       - uses: liquibase/liquibase-github-action@v7
-      with:
-        operation: 'update'
-        classpath: 'example/changelogs'
-        changeLogFile: 'samplechangelog.h2.sql'
-        username: ${{ secrets.DB_BUILD_USERNAME }}
-        password: ${{ secrets.DB_BUILD_PASSWORD }}
-        url: ${{ secrets.BUILD.DB_BUILD_URL  }}
+        with:
+          operation: 'update'
+          classpath: 'example/changelogs'
+          changeLogFile: 'samplechangelog.h2.sql'
+          username: ${{ secrets.DB_BUILD_USERNAME }}
+          password: ${{ secrets.DB_BUILD_PASSWORD }}
+          url: ${{ secrets.BUILD.DB_BUILD_URL  }}

@@ -10,7 +10,7 @@ jobs:
         with:
           operation: 'update'
           classpath: 'sql'
-          changeLogFile: 'samplechangelog.h2.sql'
+          changeLogFile: 'v2_add_constraints.sql'
           username: ${{ secrets.DB_BUILD_USERNAME }}
           password: ${{ secrets.DB_BUILD_PASSWORD }}
           url: ${{ secrets.JDBC_DB_URL }}

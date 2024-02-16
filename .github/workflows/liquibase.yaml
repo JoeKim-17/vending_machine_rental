@@ -2,7 +2,7 @@ name: Main
 on:
   - push
 jobs:
-  flyway_job:
+  migraiton-job:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -10,7 +10,7 @@ jobs:
         with:
           operation: 'update'
           classpath: './sql'
-          changeLogFile: 'main/create_db.sql'
+          changeLogFile: 'main/create_table_keys.sql'
           username: ${{ secrets.test_username }}
           password: ${{ secrets.test_password }}
           url: ${{ secrets.test_url }}

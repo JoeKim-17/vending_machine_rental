@@ -18,6 +18,11 @@ The sql script is manually configured in the yaml file. The path of the script c
 2. Connect SQL Server Management Studio to this instance and run the main/ SQL scripts.
 3. Populate the tables with some data.
 4. Basic DB created!
+5. Run the function/ SQL scripts in SQL Server Management Studio to apply relevant views, procs, and UDFs.
+### Prerequisite:
+* Running aws configure in terminal to setup ur profile's sso
+* See for more details: https://docs.aws.amazon.com/cli/latest/userguide/sso-configure-profile-token.html#sso-configure-profile-token-auto-sso
+* sql
 
 ## ./sql/main
 create_db.sql -> Creates the db and uses it

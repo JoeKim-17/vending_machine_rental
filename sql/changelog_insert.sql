@@ -5,5 +5,5 @@ insert into	Clients (
 	Email
 )
 values
-	('BBD', 'Rudolph Lucky', '465008465', 'bbd@gmail.com')
+	('BBD', 'Luckt thabang', '46500814235', 'bbd@gmail.com')
     ;

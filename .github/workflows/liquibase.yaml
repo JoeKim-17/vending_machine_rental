@@ -3,7 +3,7 @@ name: Main
 on:
   - push
 jobs:
-  flyway_job:
+  liquibase_job:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2

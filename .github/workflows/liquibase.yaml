@@ -10,7 +10,7 @@ jobs:
         with:
           operation: 'update'
           classpath: './sql'
-          changeLogFile: 'changelog_deleteTest.sql'
+          changeLogFile: 'main/create_db.sql'
           username: ${{ secrets.test_username }}
           password: ${{ secrets.test_password }}
           url: ${{ secrets.test_url }}

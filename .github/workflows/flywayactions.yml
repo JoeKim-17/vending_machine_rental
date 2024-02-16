@@ -12,8 +12,8 @@ jobs:
 
     - name: Set up secret file
       env:
-        DEBUG_PASSWORD: ${{ secrets.DEBUG_PASSWORD }}
-        DEBUG_SECRET_KEY: ${{ secrets.DEBUG_SECRET_KEY }}
+        DEBUG_PASSWORD: ${{ secrets.TEST_URL }}
+        DEBUG_SECRET_KEY: ${{ secrets.JDBC_DB_URL }}
       run: |
         echo $DEBUG_PASSWORD >> secrets.txt
         echo $DEBUG_SECRET_KEY >> secrets.txt

@@ -11,7 +11,7 @@ jobs:
         with:
           operation: 'update'
           classpath: './sql'
-          changeLogFile: 'changelog_test.sql'
-          username: ${{ secrets.DB_BUILD_USERNAME }}
-          password: ${{ secrets.DB_BUILD_PASSWORD }}
-          url: ${{ secrets.JDBC_DB_URL }}
+          changeLogFile: 'main/create_table.keys.sql'
+          username: ${{ secrets.TEST_USERNAME }}
+          password: ${{ secrets.TEST_PASSWORD }}
+          url: ${{ secrets.TEST_URL }}

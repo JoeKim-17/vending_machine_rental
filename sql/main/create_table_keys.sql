@@ -60,7 +60,7 @@ create table Rentals(
 );
 
 
-create table LeasedVendingMachiens(
+create table LeasedVendingMachines(
 	LeaseID int IDENTITY(1,1) NOT NULL,
 	RentID int,
 	MachineID int,

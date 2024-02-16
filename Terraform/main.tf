@@ -6,9 +6,9 @@ data "aws_availability_zones" "available" {}
 
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
-  version = "2.77.0"
+  version = "5.5.2"
 
-  name                 = "vendingMachineRental"
+  name                 = "vending"
   cidr                 = "10.0.0.0/16"
   azs                  = data.aws_availability_zones.available.names
   # azs                  = ["eu-west-1"]
@@ -17,17 +17,17 @@ module "vpc" {
   enable_dns_support   = true
 }
 
-resource "aws_db_subnet_group" "vendingMachineRental" {
-  name       = "vendingMachineRental"
+resource "aws_db_subnet_group" "vending" {
+  name       = "vending"
   subnet_ids = module.vpc.public_subnets
 
   tags = {
-    Name = "vendingMachineRental"
+    Name = "vending"
   }
 }
 
 resource "aws_security_group" "rds" {
-  name   = "vendingMachineRental_rds"
+  name   = "vending_rds"
   vpc_id = module.vpc.vpc_id
 
   ingress {
@@ -45,26 +45,26 @@ resource "aws_security_group" "rds" {
   }
 
   tags = {
-    Name = "vendingMachineRental_rds"
+    Name = "vending_rds"
   }
 }
 
-resource "aws_db_parameter_group" "vendingMachineRental" {
-  name   = "vendingMachineRental"
+resource "aws_db_parameter_group" "vending" {
+  name   = "vending"
   family = "sqlserver-ex-15.0"
 }
 
-resource "aws_db_instance" "vendingMachineRental" {
-  identifier             = "vendingMachineRental"
+resource "aws_db_instance" "vending" {
+  identifier             = "vending"
   instance_class         = "db.t3.micro"
   allocated_storage      = 20
   engine                 = "sqlserver-ex"
   engine_version         = "15.00.4345.5.v1"
   username               = "edu"
   password               = var.db_password
-  db_subnet_group_name   = aws_db_subnet_group.vendingMachineRental.name
+  db_subnet_group_name   = aws_db_subnet_group.vending.name
   vpc_security_group_ids = [aws_security_group.rds.id]
-  parameter_group_name   = aws_db_parameter_group.vendingMachineRental.name
+  parameter_group_name   = aws_db_parameter_group.vending.name
   publicly_accessible    = true
   skip_final_snapshot    = true
 }

@@ -1,3 +1,4 @@
+# Liquibase migration yaml
 name: Main
 on:
   - push

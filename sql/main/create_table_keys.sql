@@ -1,5 +1,5 @@
 use VendingMachineRentalDB;
-go
+
 
 create table Clients(
 	ClientID int IDENTITY(1,1) NOT NULL,
@@ -9,7 +9,7 @@ create table Clients(
 	Email nvarchar(1000) NULL,
 	constraint ClientsPK primary key (ClientID)
 );
-GO
+
 
 create table Manufacturers(
 	ManufacturerID int IDENTITY(1,1) not null,
@@ -18,7 +18,7 @@ create table Manufacturers(
 	ManufacturerPhoneNumber varchar(15) null,
 	constraint ManufacturerPK primary key (ManufacturerID)
 );
-GO
+
 
 create table Orders(
 	OrderID int identity(1,1) not null,
@@ -29,14 +29,14 @@ create table Orders(
 	constraint OrdersPK primary key (OrderID),
 	constraint ManufacturerFK foreign key (ManufacturerID) references Manufacturers(ManufacturerID)
 );
-GO
+
 create table Inventory(
 	InventoryID int identity(1,1) not null,
 	InventoryCount int not null,
 	MontlyLeasedPrice money null
 	constraint InventoryPK primary key (InventoryID)
 );
-go
+
 
 create table VendingMachines(
 	MachineID int IDENTITY(1,1) not null,
@@ -46,7 +46,7 @@ create table VendingMachines(
 	constraint InventoryMachinesFK foreign key (InventoryID) references Inventory(InventoryID),
 	constraint OrdersFK foreign key (OrderID) references Orders(OrderID)
 );
-GO
+
 
 create table Rentals(
 	RentalID int IDENTITY(1,1) NOT NULL,
@@ -58,7 +58,7 @@ create table Rentals(
 	constraint RentalPK primary key (RentalID),
 	constraint LeasedClientsFK FOREIGN KEY (ClientID) REFERENCES Clients(ClientID)
 );
-GO
+
 
 create table LeasedVendingMachiens(
 	LeaseID int IDENTITY(1,1) NOT NULL,
@@ -77,5 +77,5 @@ create table Transactions(
 	constraint TransactionsPK PRIMARY KEY (TransactionID),
 	constraint Transactions_RentFK foreign key (RentalID) references Rentals(RentalID)
 );
-GO
+
 

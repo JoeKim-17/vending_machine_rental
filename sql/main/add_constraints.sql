@@ -1,24 +1,15 @@
 use VendingMachineRentalDB;
  
+/*
 alter table Clients
 	drop 
 		constraint clients_check_email,
 		constraint clients_uniq_email
 ;
-
-alter table Inventory
-	drop constraint machiens_leasedPrice_check,
-	column MontlyLeasedPrice
-;
- 
+*/
 
 alter table Clients
 	alter column Email varchar(400);
-;
- 
-
-alter table Inventory
-	add MonthlyLeasedPrice money not null
 ;
  
 
